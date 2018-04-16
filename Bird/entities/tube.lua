@@ -1,11 +1,12 @@
-tube = {}
+local class = require "libs.middleClass"
 
-function Tube:new(x, y, width, spaceHeight)
-    local o
-    o.x = x
-    o.y = y
-    o.width = width
-    o.spaceHeight = spaceHeight
+local Tube = class('Tube')
+
+function Tube:initialize(x, y, width, spaceHeight)
+    self.x = x
+    self.y = y
+    self.width = width
+    self.spaceHeight = spaceHeight
 end
 
 function Tube:draw()
@@ -13,3 +14,5 @@ function Tube:draw()
     love.graphics.rectangle('fill', self.x, self.y, self.width, self.y)
     love.graphics.rectangle('fill', self.x, self.y + self.spaceHeight, self.width, self.y)
 end
+
+return Tube
