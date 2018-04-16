@@ -26,3 +26,25 @@ function Player:updatePosition(jump, gravity, dt)
         self.y_velocity = self.y_velocity - gravity * dt
     end
 end
+
+function Player:isCollidingWithTube(tube)
+    --top porition
+    if self.y < tube.y then
+        --left edge
+        if self.x + self.width == tube.x then
+            return true
+        --right edge
+        elseif self.x == tube.x + tube.width then
+            return true
+        end
+    --bottom portion
+    else
+        --left edge
+        if self.x + self.width == tube.x then
+            return true
+        elseif self.x == tube.x + tube.width then
+            return true
+        end
+    end
+    return false
+end
