@@ -1,18 +1,15 @@
-require "entities.player"
+Player = require "entities.player"
 
 gravity = -400
-
-function love.load()
-
-end
+local playerInstance = Player:new()
 
 function love.update(dt)
     jump = love.keyboard.isDown('space')
-    Player:update(jump, gravity, dt)
+    playerInstance:updatePosition(jump, gravity, dt)
 end
 
 function love.draw()
     love.graphics.setColor(.14, .36, .46)
     love.graphics.rectangle('fill', 0, 0, 300, 388)
-    Player:draw()
+    playerInstance:draw()
 end

@@ -1,14 +1,14 @@
-Player = {}
+local class = require "libs.middleClass"
 
-function Player:new()
-    local o = {}
-    o.x = 62
-    o.y = 200
-    o.width = 30
-    o.height = 25
-    o.y_velocity = 0
-    o.jump_height = -200
-    return o
+local Player = class("Player")
+
+function Player:initialize()
+    self.x = 62
+    self.y = 200
+    self.width = 30
+    self.height = 25
+    self.y_velocity = 0
+    self.jump_height = -200
 end
 
 function Player:draw()
@@ -22,7 +22,7 @@ function Player:updatePosition(jump, gravity, dt)
     end
     
     if self.y_velocity ~= 0 then
-        self.y = player.y + self.y_velocity * dt
+        self.y = self.y + self.y_velocity * dt
         self.y_velocity = self.y_velocity - gravity * dt
     end
 end
@@ -48,3 +48,5 @@ function Player:isCollidingWithTube(tube)
     end
     return false
 end
+
+return Player
