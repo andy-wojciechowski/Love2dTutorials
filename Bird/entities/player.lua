@@ -2,47 +2,40 @@ local class = require "libs.middleClass"
 
 local Player = class("Player")
 
-function Player:initialize()
-    self.x = 62
-    self.y = 200
-    self.width = 30
-    self.height = 25
-    self.y_velocity = 0
-    self.jump_height = -200
+function Player:initialize(world)
+    self.body = love.physics.newBody(world, 62, 200, "dynamic")
+    self.shape = love.physics.newRectangleShape(30, 25)
+    self.fixture = love.physics.newFixture(self.body, self.shape, 1)
 end
 
 function Player:draw()
     love.graphics.setColor(.87, .84, .27)
-    love.graphics.rectangle('fill', self.x, self.y, self.width, self.height)
+    love.graphics.polygon('fill', self.body.getWorldPoints(self.shape.getPoints()))
 end
 
-function Player:updatePosition(jump, gravity, dt)
+function Player:updatePosition()
     if jump then
-        self.y_velocity = self.jump_height
-    end
-    
-    if self.y_velocity ~= 0 then
-        self.y = self.y + self.y_velocity * dt
-        self.y_velocity = self.y_velocity - gravity * dt
+        self.body.applyForce(0, 400)
     end
 end
 
 function Player:isCollidingWithTube(tube)
+    local position = self.body.getPosition()
     --top porition
-    if self.y < tube.y then
+    if position.y < tube.y then
         --left edge
-        if self.x + self.width == tube.x then
+        if position.x + self.shape.getWidth() == tube.x then
             return true
         --right edge
-        elseif self.x == tube.x + tube.width then
+        elseif position.x == tube.x + tube.width then
             return true
         end
     --bottom portion
     else
         --left edge
-        if self.x + self.width == tube.x then
+        if position.x + self.width == tube.x then
             return true
-        elseif self.x == tube.x + tube.width then
+        elseif position.x == tube.x + tube.width then
             return true
         end
     end
