@@ -1,13 +1,12 @@
 local Player = require "entities.player"
 local Tube = require "entities.tube"
 
---local world = love.physics.newWorld(0, 9.81 * 64, true)
+local world = love.physics.newWorld(0, 9.81 * 64, true)
 local playerInstance = Player:new(world)
 local tubes = {}
 
 function love.load()
     love.physics.setMeter(64)
-    world = love.physics.newWorld(0, 9.81*64, true)
     createDefaultTubes()
 end
 
