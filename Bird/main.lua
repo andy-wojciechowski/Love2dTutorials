@@ -11,7 +11,7 @@ function love.load()
 end
 
 function love.update(dt)
-    world.update(dt)
+    world:update(dt)
     jump = love.keyboard.isDown('space')
     playerInstance:updatePosition()
     for i = 1, 2 do
@@ -26,6 +26,6 @@ function love.draw()
 end
 
 function createDefaultTubes()
-    tubes[1] = Tube:new(100, 62, 388, 30, world)
-    tubes[2] = Tube:new(200, 62, 388, 30, world)
+    --tubes[1] = Tube:new(100, 62, 388, 30, world)
+    --tubes[2] = Tube:new(200, 62, 388, 30, world)
 end
