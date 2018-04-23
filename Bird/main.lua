@@ -45,9 +45,9 @@ function love.draw()
     end
 end
 
-local function createDefaultTubes()
-    tubes[1] = Tube:new(100, 62, 388, generateRandomSpaceHeight(), world)
-    tubes[2] = Tube:new(200, 62, 388, generateRandomSpaceHeight(), world)
+function createDefaultTubes()
+    tubes[1] = Tube:new(100, 62, 388, playAreaHeight, generateRandomSpaceHeight(), world)
+    tubes[2] = Tube:new(200, 62, 388, playAreaHeight, generateRandomSpaceHeight(), world)
 end
 
 function beginContact(a, b, coli)
@@ -66,7 +66,7 @@ local function updateScoreIfNecessary()
     end
 end
 
-local function generateRandomSpaceHeight()
+function generateRandomSpaceHeight()
     return love.math.random(30, 60)
 end
 
