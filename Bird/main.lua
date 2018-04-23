@@ -18,8 +18,10 @@ function love.update(dt)
     world:update(dt)
     jump = love.keyboard.isDown('space')
     playerInstance:updatePosition()
+
+    x, y = playerInstance.body:getPosition()
     
-    if(playerInstance.body:getPosition().y < playAreaHeight) then
+    if(y < playAreaHeight) then
         love.load()
     end
 
@@ -28,7 +30,8 @@ function love.update(dt)
 
     needToResetTubes = false
     for i, tube in ipairs(tubes) do
-        if(tube.upperBody:getPosition().x < playAreaWidth) then
+        x, y = tube.upperBody:getPosition()
+        if(x < playAreaWidth) then
             needToResetTubes = true
         end
     end
@@ -54,13 +57,15 @@ function beginContact(a, b, coli)
     love.load()
 end
 
-local function printCurrentScore()
+function printCurrentScore()
     love.graphics.print(score, 15, 30)
 end
 
-local function updateScoreIfNecessary()
+function updateScoreIfNecessary()
     for i, tube in ipairs(tubes) do
-        if(tube.upperBody:getPostion().x < playerInstance.body:getPosition().x) then
+        tubeX, tubeY = tube.upperBody:getPosition()
+        playerX, playerY = playerInstance.body:getPosition()
+        if(tubeX < playerX) then
             score = score + 1
         end
     end
@@ -70,7 +75,7 @@ function generateRandomSpaceHeight()
     return love.math.random(30, 60)
 end
 
-local function resetCurrentTubes()
+function resetCurrentTubes()
     tubes[1] = tubes[2]
-    tubes[2] = Tubes:new(200, 62, 388, generateRandomSpaceHeight(), world)
+    tubes[2] = Tube:new(200, 62, 388, playAreaHeight, generateRandomSpaceHeight(), world)
 end
