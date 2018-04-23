@@ -14,7 +14,7 @@ function Player:draw()
     love.graphics.polygon('fill', self.body:getWorldPoints(self.shape:getPoints()))
 end
 
-function Player:updatePosition()
+function Player:updatePosition(jump)
     if jump then
         self.body:applyForce(0, 400)
     end

@@ -3,6 +3,8 @@ local Tube = require "entities.tube"
 
 local playAreaWidth = 300
 local playAreaHeight = 388
+local pipeSpaceHeight = 100
+local pipeSpaceMin = 54
 local world = love.physics.newWorld(0, 9.81 * 64, true)
 local playerInstance = Player:new(world)
 local tubes = {}
@@ -49,8 +51,8 @@ function love.draw()
 end
 
 function createDefaultTubes()
-    tubes[1] = Tube:new(100, 62, 388, playAreaHeight, generateRandomSpaceHeight(), world)
-    tubes[2] = Tube:new(200, 62, 388, playAreaHeight, generateRandomSpaceHeight(), world)
+    tubes[1] = Tube:new(100, 62, 54, playAreaHeight, generateRandomSpaceHeight(), world)
+    tubes[2] = Tube:new(200, 62, 54, playAreaHeight, generateRandomSpaceHeight(), world)
 end
 
 function beginContact(a, b, coli)
@@ -72,10 +74,10 @@ function updateScoreIfNecessary()
 end
 
 function generateRandomSpaceHeight()
-    return love.math.random(30, 60)
+    return love.math.random(pipeSpaceMin, playAreaHeight - pipeSpaceHeight - pipeSpaceMin)
 end
 
 function resetCurrentTubes()
     tubes[1] = tubes[2]
-    tubes[2] = Tube:new(200, 62, 388, playAreaHeight, generateRandomSpaceHeight(), world)
+    tubes[2] = Tube:new(200, 62, 50, playAreaHeight, generateRandomSpaceHeight(), world)
 end
