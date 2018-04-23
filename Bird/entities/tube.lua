@@ -13,8 +13,8 @@ end
 
 function Tube:draw()
     love.graphics.setColor(.37, .82, .28)
-    love.graphics.polygon("fill", self.upperBody.getWorldPoints(self.upperShape.getPoints()))
-    love.graphics.polygon("fill", self.lowerBody.getWorldPoints(self.lowerShape.getPoints()))
+    love.graphics.polygon("fill", self.upperBody:getWorldPoints(self.upperShape:getPoints()))
+    love.graphics.polygon("fill", self.lowerBody:getWorldPoints(self.lowerShape:getPoints()))
 end
 
 return Tube

@@ -11,7 +11,7 @@ end
 
 function Player:draw()
     love.graphics.setColor(.87, .84, .27)
-    love.graphics.polygon('fill', self.body.getWorldPoints(self.shape.getPoints()))
+    love.graphics.polygon('fill', self.body:getWorldPoints(self.shape:getPoints()))
 end
 
 function Player:updatePosition()
