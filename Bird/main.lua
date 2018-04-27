@@ -33,12 +33,12 @@ function love.update(dt)
     needToResetTubes = false
     for i, tube in ipairs(tubes) do
         x, y = tube.upperBody:getPosition()
-        if(x < playAreaWidth) then
+        if(x < 0) then
             needToResetTubes = true
         end
     end
 
-    resetCurrentTubes()
+    if needToResetTubes then resetCurrentTubes() end
 end
 
 function love.draw()
@@ -78,6 +78,7 @@ function generateRandomSpaceHeight()
 end
 
 function resetCurrentTubes()
+    print "Tubes Reset"
     tubes[1] = tubes[2]
     tubes[2] = Tube:new(200, 62, 50, playAreaHeight, generateRandomSpaceHeight(), world)
 end
