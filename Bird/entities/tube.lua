@@ -3,9 +3,9 @@ local class = require "libs.middleClass"
 local Tube = class('Tube')
 
 function Tube:initialize(x, y, width, height, spaceHeight, world)
-    self.upperBody = love.physics.newBody(world, x, y, "dynamic")
+    self.upperBody = love.physics.newBody(world, x, y)
     self.upperShape = love.physics.newRectangleShape(width, height)
-    self.lowerBody = love.physics.newBody(world, x, y, "dynamic")
+    self.lowerBody = love.physics.newBody(world, x, y)
     self.lowerShape = love.physics.newRectangleShape(width, height + spaceHeight)
     self.upperBody:setLinearVelocity(-15, 0)
     self.lowerBody:setLinearVelocity(-15, 0)

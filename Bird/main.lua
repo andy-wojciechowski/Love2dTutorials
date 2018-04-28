@@ -12,6 +12,8 @@ local tubes = {}
 function love.load()
     score = 0
     love.physics.setMeter(64)
+    love.window.setTitle('Bird')
+    love.window.setMode(playAreaWidth, playAreaHeight)
     world:setCallbacks(beginContact)
     createDefaultTubes()
 end
