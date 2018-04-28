@@ -16,7 +16,7 @@ end
 
 function Player:updatePosition(jump)
     if jump then
-        self.body:applyForce(0, 400)
+        self.body:applyForce(0, -1500)
     end
 end
 

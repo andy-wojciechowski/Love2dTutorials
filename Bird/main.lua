@@ -19,7 +19,7 @@ end
 function love.update(dt)
     world:update(dt)
     jump = love.keyboard.isDown('space')
-    playerInstance:updatePosition()
+    playerInstance:updatePosition(jump)
 
     x, y = playerInstance.body:getPosition()
     
@@ -78,7 +78,6 @@ function generateRandomSpaceHeight()
 end
 
 function resetCurrentTubes()
-    print "Tubes Reset"
     tubes[1] = tubes[2]
     tubes[2] = Tube:new(200, 62, 50, playAreaHeight, generateRandomSpaceHeight(), world)
 end
